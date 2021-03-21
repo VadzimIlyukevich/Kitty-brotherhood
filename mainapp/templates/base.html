@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Бравые котята</title>
+
+  <!-- Bootstrap core CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+</head>
+
+<body >
+    <style>
+        body {
+  padding-top: 56px;
+}
+
+.carousel-item {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+    </style>
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">Бравые котята</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Главная</a>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Породы котеек
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              {% for breed in breeds %}
+              <a class="dropdown-item" href="{% url 'form_list' breed.slug%}">{{breed.breed_name}}</a>
+              {% endfor %}
+              <a class="dropdown-item" href="{% url 'breed_list' %}">Все породы</a>
+            </div>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'volunteer' %}">Волонтёрство</a>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">О нас</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    {% block content %}
+  <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image: url('{% static 'mainapp/main-1920-1080-1.jpg' %}')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 style="color: black;">Первый отряд</h3>
+            <p style="color: black;">Одни из самых отважных котеек планеты</p>
+          </div>
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('{% static 'mainapp/main-1920-1080-2.jpg' %}')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>Второй отряд</h3>
+            <p>Одинокий котейка, который не пощадил ни один тапок!</p>
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('{% static 'mainapp/main-1920-1080-3.jpg' %}')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>Наши лидеры</h3>
+            <p>Тихо, они спят....</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <h1 class="my-4">Добро пожаловать к Бравым котятам!</h1>
+    <h4 class="my-4">Здесь ты можешь:</h4>
+
+    <!-- Marketing Icons Section -->
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Быть котейкой</h4>
+          <div class="card-body">
+            <p class="card-text">Мяу мяу мяу мяу, мяу мяу мяу! Мяу мяу мяу! Мяу мяу мяу! Мяу мяу мяу.....</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Стать котейкой</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Быть наглой мордой</h4>
+          <div class="card-body">
+            <p class="card-text">При со стола любой кулинарный изыск, царапай и шипи на всех, гадь в тапки. Всё равно тебя будут любить!</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Стать наглой мордой</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Давать почесать пузико</h4>
+          <div class="card-body">
+            <p class="card-text">Или не давать его чесать....</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Ну почешите уже</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Portfolio Section -->
+    <h2>Доска почётных котеек</h2>
+
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="{% static 'mainapp/main-700-400-1.jpg' %}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">Филипп Красивый</a>
+            </h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="{% static 'mainapp/main-700-400-2.jpg' %}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">Фридрих Барбаросса</a>
+            </h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="{% static 'mainapp/main-700-400-3.jpg' %}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">Ричард Львиное Сердце</a>
+            </h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="{% static 'mainapp/main-700-400-4.png' %}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">Пётр Великий</a>
+            </h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="{% static 'mainapp/main-700-400-5.jpg' %}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">Отто фон Бисмарк</a>
+            </h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="{% static 'mainapp/main-700-400-6.jpg' %}" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">Генрих Тюдор</a>
+            </h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Features Section -->
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Стань одним из нас</h2>
+        <p>Плюсы быт котейкой:</p>
+        <ul>
+          <li>
+            <strong>Еда с неба</strong>
+          </li>
+          <li>2-3 жизни можно поспать</li>
+          <li>Крутой штаб</li>
+          <li>Тебя любят</li>
+          <li>Возможность стать шавермой</li>
+        </ul>
+        <p>И это только начало списка. Сколько разных чудес случается с котейками, но узнать какие именно должен ты сам.</p>
+      </div>
+      <div class="col-lg-6">
+        <img class="img-fluid rounded" src="{% static 'mainapp/main-700-450.jpg' %}" alt="">
+      </div>
+    </div>
+    <!-- /.row -->
+    <hr>
+
+    <!-- Call to Action Section -->
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <p>Кошачье общество просит помощи от каждого, кто не может останеться в стороне. Может быть именно ТЫ спасёшь жизнь лучшей котейки мира. Будь с нами. Защищай этих милый шаверм ценой всего!</p>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-lg btn-secondary btn-block" href="{% url 'volunteer' %}">Стань волонтёром</a>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+{% endblock content %}
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy;  Kitty brotherhood 2021</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+
+</html>
