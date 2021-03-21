@@ -8,7 +8,7 @@ from .mixin import FormDetailMixin, BreedDetailMixin
 
 class BaseView(View):
     def get(self, request, *args, **kwargs):
-        breeds = Breed.object.all()
+        breeds = Breed.object.get_all_breed()
         return render(request, 'base.html', {'breeds': breeds})
 
 
@@ -19,7 +19,7 @@ class TestView(View):
 
 class AboutView(View):
     def get(self, request, *args, **kwargs):
-        breeds = Breed.object.all()
+        breeds = Breed.object.get_all_breed()
         return render(request, 'about.html', {'breeds': breeds})
 
 
@@ -48,16 +48,12 @@ class VolunteerView(View):
 
 class BreedListView(View):
     def get(self, request, *args, **kwargs):
-        breeds = Breed.object.all()
+        breeds = Breed.object.get_all_breed()
         return render(request, "breed_list.html", {'breed_list': breeds})
 
 
 class FormOfCatDetailView(View):
-    def get(self, request, *args, **kwargs):
-        breeds = Breed.object.get_all_breed()
-        return render(request, "form.html", {'breed_list': breeds})
-# class FormOfCatDetailView(View):
-#     def get(self, request, slug):
-#         breed = Breed.object.all()
-#         form = FormOfCat.object.all()
-#         return render(request, "form.html", {"breed_list": breed, "forms": form})
+    def get(self, request, slug):
+        breed = Breed.object.get(slug=slug)
+        form = FormOfCat.object.all()
+        return render(request, "form.html", {"breed_list": breed, "forms": form})
