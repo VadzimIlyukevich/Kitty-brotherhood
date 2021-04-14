@@ -16,12 +16,12 @@
       <li class="breadcrumb-item active">Все породы</li>
     </ol>
 
-    {% for breed in breed_list %}
+    {% for breed in breeds %}
     <!-- Project One -->
     <div class="row">
       <div class="col-md-7">
 
-          <img class="img-fluid rounded mb-3 mb-md-0" src="/media/{{breed.image}}" alt="">
+          <img class="img-fluid rounded mb-3 mb-md-0" src="{{breed.image}}" alt="">
         </a>
       </div>
       <div class="col-md-5">
