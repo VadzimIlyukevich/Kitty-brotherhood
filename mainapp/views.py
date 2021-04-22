@@ -1,19 +1,15 @@
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import DetailView, ListView
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .models import Breed, FormOfCat
-from .serializers import *
-from .forms import VolunteerForm
-from .mixin import FormDetailMixin, BreedDetailMixin
+import requests
+
+api_url = "http://127.0.0.1:8000/api/"
 
 
-class BaseApiView(View):
+class BaseView(View):
     def get(self, request):
-        breeds = Breed.object.all()
-        serializer = BreedSerializer(breeds, many=True)
-        return render(request, 'base.html', {'breeds': serializer.data})
+        breeds = requests.get(api_url + "breed").json()
+        return render(request, 'base.html', context={'breeds': breeds})
 
 
 class TestView(View):
@@ -22,34 +18,33 @@ class TestView(View):
 
 
 class AboutView(View):
-    def get(self, request, *args, **kwargs):
-        breeds = Breed.object.all()
-        serializer = BreedSerializer(breeds, many=True)
-        return render(request, 'about.html', {'breeds': serializer.data})
-
-
-class VolunteerApiView(APIView):
-    def post(self, request):
-        volunteer_request = VolunteerCreateSerializer(data=request.data)
-        if volunteer_request.is_valid():
-            volunteer_request.save()
-        return Response(volunteer_request.data, status=201)
-
-    def get(self, request, *args, **kwargs):
-        breeds = Breed.object.all()
-        serializer = BreedSerializer(breeds, many=True)
-        return render(request, 'volunteer.html', {'breeds': serializer.data})
+    def get(self, request):
+        breeds = requests.get(api_url + "breed").json()
+        return render(request, 'about.html', context={'breeds': breeds})
 
 
 class VolunteerView(View):
-    def get(self, request, *args, **kwargs):
-        breeds = Breed.object.all()
-        serializer = BreedSerializer(breeds, many=True)
-        return render(request, 'volunteer.html', {'breeds': serializer.data})
+    def get(self, request):
+        volunteers = requests.get(api_url + "volunteer").json()
+        return render(request, 'volunteer.html', context={'volunteers': volunteers})
+
+    def post(self, request):
+        if request.method == "POST":
+            list = {
+                "full_name": request.POST['full_name'],
+                "phone": request.POST['phone'],
+                "email": request.POST['email'],
+                "about": request.POST['about'],
+            }
+            status_code = requests.post(api_url + "volunteer", json=list)
+            if status_code.status_code != 200:
+                return redirect('home')
+            else:
+                return HttpResponseRedirect('/')
+        return render(request, 'volunteer.html', {'volunteer': list})
 
 
 class BreedListView(View):
     def get(self, request):
-        breeds = Breed.object.all()
-        serializer = BreedSerializer(breeds, many=True)
-        return render(request, 'breed_list.html', {'breeds': serializer.data})
+        breeds = requests.get(api_url + "breed").json()
+        return render(request, 'breed_list.html', context={'breeds': breeds})
