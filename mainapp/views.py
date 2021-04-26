@@ -30,21 +30,33 @@ class VolunteerView(View):
 
     def post(self, request):
         if request.method == "POST":
-            list = {
+            payload = {
                 "full_name": request.POST['full_name'],
                 "phone": request.POST['phone'],
                 "email": request.POST['email'],
                 "about": request.POST['about'],
             }
-            status_code = requests.post(api_url + "volunteer", json=list)
+            status_code = requests.post(api_url + "volunteer", json=payload)
             if status_code.status_code != 200:
                 return redirect('home')
             else:
                 return HttpResponseRedirect('/')
-        return render(request, 'volunteer.html', {'volunteer': list})
+        return render(request, 'volunteer.html', {})
 
 
 class BreedListView(View):
     def get(self, request):
         breeds = requests.get(api_url + "breed").json()
         return render(request, 'breed_list.html', context={'breeds': breeds})
+
+
+def index(request):
+    return render(request, 'index.html', {})
+
+
+def breed_detail(request, id):
+    return render(request, 'index.html', {})
+
+
+def form_detail(request, id):
+    return render(request, 'index.html', {})

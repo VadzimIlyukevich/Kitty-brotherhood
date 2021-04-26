@@ -20,7 +20,6 @@ class Breed(models.Model):
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to="breeds/")
     breed_description = models.CharField(max_length=255, verbose_name='Описание породы')
-    object = BreedManager()
 
     class Meta:
         verbose_name = "Порода"
@@ -46,7 +45,6 @@ class FormOfCat(models.Model):
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to="forms/")
     form_description = models.CharField(max_length=255, verbose_name='Описание вида')
-    object = FormManager()
 
     def __str__(self):
         return self.name_of_form
