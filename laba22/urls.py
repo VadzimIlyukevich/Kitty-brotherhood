@@ -23,8 +23,5 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include('mainapp.urls')),
                   path('api/', include('restapp.urls')),
-                  path('spa/', index),
-                  path('spa/post/<int:id>', form_detail),
-                  path('spa/breed/<int:id>', breed_detail),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
