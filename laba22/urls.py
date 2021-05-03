@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from mainapp.views import index, breed_detail, form_detail
+from mainapp.views import index
+
 
 urlpatterns = [
                   path('admin/', admin.site.urls),

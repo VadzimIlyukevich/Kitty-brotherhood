@@ -54,9 +54,4 @@ def index(request):
     return render(request, 'index.html', {})
 
 
-def breed_detail(request, id):
-    return render(request, 'index.html', {})
 
-
-def form_detail(request, id):
-    return render(request, 'index.html', {})
