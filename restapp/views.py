@@ -7,6 +7,13 @@ from .models import Breed
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
+def check_edit_permission(request, obj):
+    if request.user.is_superuser:
+        return True
+    else:
+        return obj == request.user
+
+
 class BaseApiView(APIView):
     def get(self, request):
         breeds = Breed.objects.all()
@@ -31,6 +38,8 @@ class BreedApiViewsSet(viewsets.ModelViewSet):
 
 
 class FormApiViewsSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+
     queryset = FormOfCat.objects.all()
     serializer_class = FormSerializer
 

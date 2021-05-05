@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponseNotFound, JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 import requests
@@ -51,6 +51,7 @@ class BreedListView(View):
 
 
 def index(request):
+
     return render(request, 'index.html', {})
 
 
