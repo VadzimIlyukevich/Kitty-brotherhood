@@ -51,8 +51,8 @@ class BreedListView(View):
 
 
 def index(request):
-
-    return render(request, 'index.html', {})
-
+    return render(request, 'index.html')
 
 
+def auth(request):
+    return render(request, 'oauth.html')

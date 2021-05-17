@@ -39,29 +39,29 @@ function LoginPage() {
             <form onSubmit={loginUser}>
                 <input type="hidden" name="csrfmiddlewaretoken"
                        value="0pmpXbOsJcizwf95KkMx2zLtTewOy8CTVHQFqn3JRsSoWPoHqkkWpXktslABmAAC"/>
-                <div class="form-outline mb-4" style={{'margin-left': '500px'}}>
+                <div class="form-outline mb-4" style={{'margin-left': '0px'}}>
                     <input type="text" name="username" className="input" placeholder="Username"
                            maxLength="100" required
                            id="id_username" onChange={onChange}/>
                 </div>
 
-                <div class="form-outline mb-4" style={{'margin-left': '500px'}}>
+                <div class="form-outline mb-4" style={{'margin-left': '0px'}}>
                     <input type="password" name="password" className="input" placeholder="Password" maxLength="100"
                            required
                            id="password" onChange={onChange}/>
                 </div>
 
-                    <input className='btn btn-outline-dark btn-lg btn-block mb-4' style={{'margin-left': '500px'}}
-                     type="submit" value="Hello Brotherhood"/>
+                    <input maxLength="300px" className='btn btn-outline-dark btn-lg mb-4' style={{'margin-left': '0px'}}
+                     type="submit" value="Шалом"/>
 
                 <div className="text-center">
                     <p>Not a member? <Link to={{pathname: `/register`}} className="btn btn-link">Sing up</Link></p>
                     <p>or sign up with:</p>
                     <div className="row">
                         <div className="col-md-12"><a
-                            className="btn btn-lg btn-block  btn-light" href="#"><img
+                            className="btn btn-lg btn-block  btn-light" href="http://127.0.0.1:8000/auth/"><img
                             src="https://img.icons8.com/color/16/000000/google-logo.png"/> Signup Using Google</a>
-                        </div>
+                        </div>-
                     </div>
                 </div>
             </form>

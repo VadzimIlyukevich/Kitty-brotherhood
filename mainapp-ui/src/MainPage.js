@@ -15,17 +15,16 @@ function MainPage() {
         <Link className="btn btn-dark btn-lg" onClick={handleClick}>Logout</Link>
     );
     const guestLinks = (
-        <Link className="btn btn-red btn-lg" to={{pathname: `/login`}}>Login</Link>
+        <Link className="btn btn-dark btn-lg" to={{pathname: `/login`}}>Login</Link>
     );
 
+
     return (
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item"><Link className="nav-link" to={{pathname: `/breeds`}}> Breeds</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to={{pathname: `/forms`}}>Forms</Link></li>
-                    </ul>
+
                     {isAuthenticated ? authLinks : guestLinks}
+
                     </div>
                 </nav>
     );

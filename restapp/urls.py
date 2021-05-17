@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 
@@ -15,4 +15,3 @@ urlpatterns = [
     path('logout', LogoutUser.as_view(), name="logout_user"),
 ]
 urlpatterns += router.urls
-

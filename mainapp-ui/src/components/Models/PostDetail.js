@@ -4,15 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function PostDetail({match}) {
 
-  const [post, setPost] = useState({})
+  const [breed, setBreed] = useState({})
   const id = match.params.id
 
   useEffect(() => {
     axios({
       method: "GET",
-      url: `http://127.0.0.1:8000/api/form/${id}`
+      url: `http://127.0.0.1:8000/api/breed`
   }).then(response =>{
-      setPost(response.data)
+      setBreed(response.data)
       })
   },[id])
 
