@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 import requests
 
-api_url = "http://127.0.0.1:8000/api/"
+api_url = "https://cryptic-bastion-34651.herokuapp.com/api/"
 
 
 class BaseView(View):
