@@ -8,8 +8,7 @@ api_url = "https://cryptic-bastion-34651.herokuapp.com/api/"
 
 class BaseView(View):
     def get(self, request):
-        breeds = requests.get(api_url + "breed").json()
-        return render(request, 'base.html', context={'breeds': breeds})
+        return render(request, 'base.html')
 
 
 class TestView(View):
